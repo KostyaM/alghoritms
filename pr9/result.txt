@@ -1,0 +1,8 @@
+Hi, what is your name?
+Nice to meet you, Yana!
+Hi, what is your name?
+Nice to meet you, Pety!
+Hi, what is your name?
+Nice to meet you, Dasha!
+Hi, what is your name?
+Bye!
