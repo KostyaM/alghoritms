@@ -1,0 +1,94 @@
+= Практическая 9
+
+== Ответы на вопросы
+1. Какие команды создадут файл file.txt и запишут в него поток ошибок
+программы program? Считайте, что в момент запуска программы файл
+file.txt не существует.
++
+--
+[source, bash]
+----
+printf "Yana\npety\nDasha" | python3 program.py &> errors.txt > result.txt
+----
+NOTE: При помощи команды выше я создал pipe из скрипта, вводящего данные и pythion скрипта. Вывожу ошибки командой `&>` в файл errors.txt и вывожу резулотат исполнения программы `>` result.txt
+
+errors.txt
+
+[source, text]
+----
+You made a mistake! I will capitalize your name!
+----
+
+result.txt
+[source, text]
+----
+Hi, what is your name?
+Nice to meet you, Yana!
+Hi, what is your name?
+Nice to meet you, Pety!
+Hi, what is your name?
+Nice to meet you, Dasha!
+Hi, what is your name?
+Bye!
+
+----
+--
+
+2. Куда деваются сообщения об ошибках (т.е. вывод в stderr) от тех
+программ, которые объединены в конвейер (pipe)?
++
+--
+NOTE: Уходят в bash
+--
+
+3. В каком файле на диске окажется картинка, если для её скачивания
++
+--
+были выполнены следующие команды?
+[source, bash]
+----
+cd /home/alex/
+wget -P /home/alex/Pictures -O 1.jpg http://example.com/example.jpg
+----
+NOTE: Картинка будет сохранена в место, которое указано параметром *-P* - path, т.е. в папку _/home/alex/Pictures_
+--
+4. Какую опцию нужно указать команде wget, чтобы она не выводила
+никаких сообщений на экран (Resolving.., Connecting to.. и т.д.)?
++
+--
+
+NOTE: Нужно указать опцию -q или --quite
+
+[source, bash]
+----
+wget -q  https://avatars.mds.yandex.net/get-zen_doc/57035/pub_5d04e0863da6540da24d2fe9_5d04e29f80030d0d86acbe40/scale_1200
+----
+image::image-2020-12-13-12-42-43-147.png[]
+--
+5. Пусть на некоторой web-странице есть ссылки на картинки в форматах png и jpg, а также ссылки на другие страницы сайта (обычные html файлы). Какие файлы будут скачаны на компьютер, если запустить `wget -r -l 1 -A jpg` и передать в качестве аргумента ссылку на эту web- страницу? Выберите наиболее полный ответ!
++
+--
+
+NOTE: Ключ *-r* означает рекурсивное скачивание (Скачивается документ, затем все документы на который этот документ ссылается и так далее для каждого документа) с ключем *-l* - *глубиной рекурсии* 1 т.е. глубина прохода - 1- т.е. будет скачаны все картинки формата .jpg - ключ *-A acceptance list*, которые будут находиться в пределах данной рекурсии
+
+image:image-2020-12-13-12-44-35-214.png[]
+--
+6. Скачайте из терминала https://stepik.org/media/attachments/course73/quiz_archive.tar.gz[архив] в
+директорию `/home/box` (для этого вам пригодится команда wget.
+Распакуйте этот архив с использованием ровно одной команды
+терминала. Поученный файл прикрепить в ответ на задание.
++
+--
+NOTE: Скачиваю и сразу извлекаю из архива gz при помощи команды
+[source, bash]
+----
+wget -qO- https://stepik.org/media/attachments/course73/quiz_archive.tar.gz | gunzip > quize_archive.tar
+----
+Получил tar контейнер quiz_archive.tar
+
+image:image-2020-12-13-12-41-38-880.png[]
+--
+
+== Курс на intuit
+
+image::image-2020-12-13-12-49-33-863.png[]
